@@ -20,6 +20,11 @@ app.get('/', async (req, res) => {
   res.json({ name });
 })
 
+app.get('/save', async (req, res) => {
+  const name = await redisClient.set("name", req.query.name);
+  res.send("OK");
+})
+
 app.listen(3000, () => {
   console.log("Api started");
 })
